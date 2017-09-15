@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset='UTF-8'>
+        <script src="js/jquery-1.11.3.js"></script>
+        <title>练习3</title>
+        <style>
+            .parent {
+                width: 800px;
+                height: 200px;
+                background-color: green;
+                border: 1px solid #E74D4D;
+            }
+            .child {
+                width: 600px;
+                height: 100px;
+                margin-top: 20px;
+                background-color: pink;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="parent">
+            <div class="child"></div>
+        </div>
+    </body>
+ <script>
+     var endDate = new Date("2017/12/31 23:59:59");
+     setInterval(putcontent,1000);
+     function clock(date) {
+        var now = new Date();
+        var arr = [];
+        var d_value_seconds= parseInt((date.getTime() - now.getTime()) / 1000);
+        var seconds = parseInt(d_value_seconds % 60);
+        var minutes = parseInt(d_value_seconds / 60 % 60);
+        var hours = parseInt(d_value_seconds / 3600 % 24);
+        var days = parseInt(d_value_seconds / 3600 /24);
+        arr.push( days, hours, minutes, seconds );
+        // console.log(arr);
+        return arr;
+     }
+     function putcontent(){
+        var child = document.getElementsByClassName("child")[0];
+        var a = clock(endDate);
+        child.innerHTML = '距离2017年12月31日 23:59:59 还剩：' + a[0] + '天' + a[1] + '小时' + a[2] + '分' + a[3] + '秒';
+     }
+ </script>
+        
+   
+
+</html>

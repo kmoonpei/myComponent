@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            position: relative;
+            background: #ccc;
+        }
+
+        .ballon {
+            position: absolute;
+            width: 160px;
+            height: 160px;
+            border-radius: 160px 160px 60px 160px;
+            background: #faf9f9;
+            transform: rotate(45deg);
+            box-shadow: -8px -8px 80px 8px #873940 inset;
+        }
+
+        .ballon::after {
+            position: absolute;
+            content: '';
+            width: 0;
+            height: 0;
+            right: 0;
+            bottom: 0;
+            border: 8px solid transparent;
+            border-right-color: rgba(250, 98, 122, .6);
+            transform: rotate(45deg);
+            border-radius: 16px;
+        }
+	</style>
+	<title>ballon</title>
+</head>
+<body>
+</body>
+</html>
+<script type="text/javascript">
+	var num = 10;
+    var bW = 160;
+    var wW = window.innerWidth;
+    var wH = window.innerHeight;
+    var timer = null;
+    init(num);
+    timer = setInterval(move,1000/60);
+    function init(num){
+        for(var i = 0; i < num; i++){
+            var oBallon = document.createElement('div');
+            oBallon.className = 'ballon';
+            var randomX = Math.random() * wW - bW;
+            randomX = Math.max(0,randomX);
+            oBallon.style.left = randomX + 'px';
+            oBallon.style.top = wH + 'px';
+            oBallon.speed = Math.random() * 5 + 1; //自定义属性 随机速度
+            document.body.appendChild(oBallon);
+        }
+        document.body.addEventListener('click',function(e){
+                if(e.target.className.toLowerCase() === 'ballon'){
+                    boom.call(e.target,function(){
+                        //高级回调
+                        this.parentNode.removeChild(this);
+                        init(2);
+                        
+                    }.bind(e.target));
+                }
+            },false);
+    }
+
+    function move(){
+        var oBallons = document.querySelectorAll('.ballon');
+        for(var i = 0;i < oBallons.length;i++){
+            oBallons[i].style.top = oBallons[i].offsetTop - oBallons[i].speed + 'px';
+        }
+    }
+    
+    function boom(cb){
+        this.timer = setInterval(function(){
+            if(this.offsetWidth < 10){
+                clearInterval(this.timer);
+                cb && cb();
+            }
+            this.speed++;
+            this.style.width = this.offsetWidth - 10 + 'px';
+            this.style.height = this.offsetHeight - 10 + 'px';
+        }.bind(this),1000/60);
+    }
+</script>

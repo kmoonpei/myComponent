@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang='en'>
+<head>
+<meta charset='UTF-8'>
+<script src="js/jquery-1.11.3.js"></script>
+<title>切换卡</title>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    .box {
+        position: relative;
+        margin: 100px auto;
+        width: 400px;
+        /*height: 400px;*/
+        background-color: #f0ede6;
+        /*border: 2px solid #d7d3c7;*/
+    }
+    ul {
+        list-style: none;
+    }
+    ul li {
+        float: left;
+        width: 50%;
+        line-height: 60px;
+        text-align: center;
+        background-color: #d4cdbd;
+        color: #847182;
+        font-size: 24px;
+    }
+    .checked {
+        background-color: #f0ede6;
+        color: #000;
+    }
+    .content {
+        position: absolute;
+        top: 60px;
+        width: 400px;
+        height: 360px;
+        background-color: #f0ede6;
+    }
+    .circle {
+        position: absolute;
+        width: 80px;
+        height: 80px;
+        top: 50%;
+        left: 50%;
+        margin-left: -40px;
+        margin-top: -40px;
+        background-color: #dfdcd3;
+        line-height: 80px;
+        text-align: center;
+        border-radius: 40px;
+        font-size: 24px;
+    }
+    .content .active {
+        display: flex;
+    }
+    .content li {
+        display: none;
+    }
+</style>
+</head>
+<body>
+    <div class="box">
+        <ul>
+            <li class="checked">first</li>
+            <li>second</li>
+        </ul>
+        <ul id="content" class="content">
+            <li class="active">
+                <div class="circle">1</div>
+            </li>
+            <li>
+                <div class="circle">2</div>
+            </li>
+        </ul>
+    </div>
+</body>
+<!--<script>
+    "use strict";
+    var uls = document.getElementsByTagName("ul");
+    var checks = uls[0].children;
+    var contents = uls[1].children;    
+    for(var i=0;i<checks.length;i++){
+        checks[i].index = i;
+        checks[i].onclick = function(){
+            console.log(1);
+            for(var j=0;j<checks.length;j++){
+                checks[j].className = "";
+                contents[j].className = "";
+            }
+            this.className = "checked";
+            contents[this.index].className = "active";
+        }
+    }
+</script>-->
+<!--<script>
+    var tab = function(el){
+        this.el = el;
+        this.cls1 = "checked";
+        this.cls2 = "active";
+        if(!this.checkEl()){
+            console.log("no element!");
+            return;
+        }
+        this.setChange();
+    };
+    tab.prototype = {
+        checkEl: function(){
+            if(this.el){
+                return true;
+            }else{
+                return false;
+            }           
+        },
+        setChange: function(){
+            var uls = this.el.getElementsByTagName("ul");
+            var checks = uls[0].children;
+            var contents = uls[1].children;
+            var i;
+            for(i=0;i<checks.length;i++){
+                checks[i].index = i;
+                var that = this;
+                checks[i].onclick = function(){
+                    console.log(1);
+                    var j;
+                    for(j=0;j<checks.length;j++){
+                        checks[j].className = "";
+                        contents[j].className = "";
+                    }
+                    checks[this.index].className = that.cls1;
+                    contents[this.index].className = that.cls2;
+                }
+            }
+        }
+    };
+
+    var box = document.getElementsByClassName("box")[0];
+   
+   
+    var tab1 = new tab(box);
+    
+</script>-->
+<!--<script>
+    $(function(){
+        var $li = $("div.box ul li");
+        $li.click(function(){
+            $(this).addClass("checked").siblings().removeClass("checked");
+            var index = $li.index(this);
+            $("div.box ul.content li").eq(index).addClass("active").siblings().removeClass("active");
+        });
+    });
+</script>-->
+<script>
+    ;(function($){
+        
+        var defaultOptions = {
+            cls1: "active",
+            cls2: "checked"
+        }
+
+        var Tab = function(el, options) {
+            this.el = el;
+            this.options = $.extend({}, defaultOptions, options);
+            this.setChange();
+        }
+
+        Tab.prototype = {
+            setChange: function(){
+                var tabs = this.el.find("ul:eq(0) li");
+                var contents = this.el.find("ul:eq(1) li");
+                var that = this;
+                tabs.click(function() {
+                    // tabs.removeClass();
+                    // $(this).addClass(that.options.cls2);
+                    // var index = $(this).index();
+                    // contents.removeClass();
+                    // contents.eq(index).addClass(that.options.cls1);
+                    $(this).addClass(that.options.cls2).siblings().removeClass(that.options.cls2);
+                    var index = $(this).index();
+                    contents.eq(index).addClass(that.options.cls1).siblings().removeClass(that.options.cls1);
+                })
+              
+            }
+        }
+
+
+        $.fn.tab =  function(options) {
+            if( options === 'undefined' ) {
+                options = {};
+            }
+            var tab = new Tab(this, options);
+            return this;
+        }
+    
+       
+    })(jQuery);
+
+
+    $(function(){
+        $("body").tab();
+    });
+
+</script>
+</html>

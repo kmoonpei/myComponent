@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang='en'>
+<head>
+<meta charset='UTF-8'>
+<script src="js/jquery-1.11.3.js"></script>
+<title>练习</title>
+</head>
+<body>
+
+</body>
+<script>
+    $.extend({
+        sayHello: function(name) {
+            console.log('Hello,' + (name ? name : 'Dude') + '!');
+        }
+    })
+    $.sayHello(); //调用
+    $.sayHello('Wayou'); //带参调用
+
+   
+
+    //对象数组排序
+    function keysrt(key,desc) {
+        return function(a,b){
+            return desc ? ~~(a[key] > b[key]) : ~~(a[key] < b[key]);
+        }
+    }
+    var ary=[{id:1,name:"b"},{id:2,name:"a"}];
+    ary.sort(keysrt('id',true));
+</script>
+</html>

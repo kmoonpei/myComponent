@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang='en'>
+<head>
+<meta charset='UTF-8'>
+<title>分页</title>
+<script src=js/jquery-1.11.3.js></script>
+<style>
+    .pagination ul{
+        list-style: none;
+    }
+    .pagination li {
+        display: block;
+        float: left;
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+        border: 1px #d3d3d3 solid;
+        border-radius: 5px;
+    }
+    .pagination li:hover {
+        cursor: pointer;
+        background-color: #ccc;
+    }
+    .pagination li.pre,.pagination li.aft {
+        width: 60px;
+        height: 30px;
+    }
+    .pagination .active {
+        background: green;
+        color: white;
+    }
+</style>
+</head>
+<body>
+    <div class="pagination">
+        <!--<ul >
+        <li>1</li>
+        <li>2</li>
+        <li class="active">3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>-->
+    </div>
+    
+</body>
+<!--<script>
+    var Pagination = function(el, maxPage, currentPage) {
+        this.el = el;
+        this.maxPage = maxPage;
+        this.currentPage = currentPage;
+        this.init();
+        this.render();
+    }
+
+    Pagination.prototype = {
+        init: function() {
+            while( this.el.hasChildNodes() ) {
+                this.el.removeChild(this.el.firstChild);
+            }
+        },
+        
+        render: function() {
+            var pager = document.createElement("ul");
+            for(var i = 0; i < (this.maxPage + 2); i++) {
+                 var index = document.createElement('li');
+                 if( i === this.currentPage ) {
+                     index.className = 'active';
+                 }
+                 if( i  === 0 ){
+                     index.innerText = "前一页";
+                     index.className = 'pre';
+                 } else if ( i === this.maxPage + 1 ){
+                     index.innerText = "后一页";
+                     index.className = 'aft';
+                 } else {
+                     index.innerText = i + "";
+                 }
+                 pager.appendChild(index);
+            }
+            this.el.appendChild(pager);
+            var lis = pager.getElementsByTagName("li");
+            // var flag = null;          
+            for( var j = 0;j < lis.length;j++ ) {
+                lis[j].index = j;
+                lis[j].onclick = function(){
+                    
+                    if( this.index > 0 && this.index < lis.length - 1 ){
+                        for( var k = 1;k < lis.length - 1;k++ ){
+                            if( k > 0 && k < lis.length-1 ){
+                                lis[k].className = '';
+                            }
+                        }
+                        this.className = 'active';
+                    } else if ( this.index === 0 ) {
+                        var currentLi = pager.getElementsByClassName("active")[0];
+                        currentLi.className = '';
+                        var current_num = parseInt(currentLi.text()) - 1;
+                        lis[flag].className = '';                        
+                        lis[flag - 1].className = 'active';
+                    }
+               
+                }
+            };
+        }
+
+    }
+
+    var page = new Pagination(document.getElementsByClassName('pagination')[0], 10, 4);
+
+    
+</script>-->
+
+<script>
+    ;(function($,window,document,undefined){
+
+        var Paging = function(el,options){
+            this.el = el;
+            this.default = {
+                currentClass:'active',
+                pre:'pre',
+                aft:'aft',
+                maxPage:10,
+                currentPage:1
+            };
+            this.options = $.extend({},this.default,options);
+            this.init();
+            this.render();
+        }
+
+        Paging.prototype = {
+            init:function(){
+                this.el.html('');
+                this.options.maxPage = this.options.maxPage > 0 ? this.options.maxPage : 0;
+                this.options.currentPage = this.options.currentPage > 0 ? this.options.currentPage : 1;
+                this.options.currentPage = this.options.maxPage < this.options.currentPage ? this.options.maxPage : this.options.currentPage;
+            },
+            render:function(){
+                var that = this;
+                var $ul = $('<ul></ul>');
+                for( var i = 0;i < that.options.maxPage + 2;i++ ) {
+                    var $page = $('<li></li>');
+                    if( i === 0 ){
+                        $page.text('上一页').addClass(that.options.pre);
+                    } else if ( i === that.options.maxPage + 1 ) {
+                        $page.text('下一页').addClass(that.options.aft);                    
+                    } else {
+                        $page.text(i);
+                        if( i  === that.options.currentPage ) {
+                            $page.addClass(that.options.currentClass);
+                        }
+                    }              
+                    $page.appendTo($ul);  
+                }
+                $ul.appendTo(that.el);
+                $ul.on('click','li',function() {
+                    var $lis = $ul.find('li');
+                    var current_num = $('.'+that.options.currentClass).index();                
+                    if( $(this).index() === 0 ) { 
+                        if ( current_num - 1 > 0 ) {
+                            $lis.eq(current_num - 1).addClass(that.options.currentClass)
+                            .siblings().removeClass(that.options.currentClass);
+                        }
+                    } else if ( $(this).index() === that.options.maxPage + 1 ) {
+                        if ( current_num + 1 <= that.options.maxPage ) {
+                            $lis.eq(current_num + 1).addClass(that.options.currentClass)
+                            .siblings().removeClass(that.options.currentClass);
+                        }
+                    } else {
+                        $(this).addClass(that.options.currentClass).siblings()
+                        .removeClass(that.options.currentClass);
+                    }
+                });
+            }
+        }
+
+        $.fn.paging = function(options){
+            var paging = new Paging(this,options);
+            return this;
+        }
+    })(jQuery,window,document);
+
+    $(function(){
+        var $el = $('.pagination');
+        $el.paging({maxPage:10,currentPage:3});
+        // $el.paging();
+    });
+
+</script>
+</html>
