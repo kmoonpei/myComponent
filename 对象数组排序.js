@@ -1,14 +1,4 @@
-<!doctype html>
-<html lang='en'>
-<head>
-<meta charset='UTF-8'>
-<script src="js/jquery-1.11.3.js"></script>
-<title>练习</title>
-</head>
-<body>
 
-</body>
-<script>
     $.extend({
         sayHello: function(name) {
             console.log('Hello,' + (name ? name : 'Dude') + '!');
@@ -27,5 +17,3 @@
     }
     var ary=[{id:1,name:"b"},{id:2,name:"a"}];
     ary.sort(keysrt('id',true));
-</script>
-</html>
