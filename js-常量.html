@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>js-常量</title>
+</head>
+<body>
+    
+</body>
+<script>
+    //定义一个对象存储常量
+    var constant = {}
+
+    //定义对象的属性值作为常量，需要使用Object.defineProperty方法来使用
+    Object.defineProperty(constant, 'a', {
+        writable: false,
+        value: 123
+    })
+
+    console.log(constant.a) //123
+    constant.a = 321
+    console.log(constant.a) //依旧是321，上面代码没有修改属性值
+
+</script>
+</html>

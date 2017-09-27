@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div>
+    这是个div
+  </div>
+  <button class="btn" type="button">点击改变文字</button>
+</body>
+<script>
+  function JQuery(el) {
+    //获取节点
+    this.dom = document.querySelector(el) 
+  }
+
+  JQuery.prototype = {
+    text: function(str) {
+      this.dom.innerHTML = str
+      return this 
+    },
+    click: function(callback) {
+      this.dom.addEventListener("click", callback);
+      return this
+    }
+  }
+
+  function $(el) {
+    return new JQuery(el)
+  }
+
+  $('.btn').click(function() {
+    $('div').text('改变了文字')
+  })
+</script>
+</html>
