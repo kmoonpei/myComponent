@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>通威</title>
+    <style>
+        * {
+            font-size: 12px;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        ul li {
+            float: left;
+        }
+
+        .tab-box {
+            width: 55rem;
+            margin: 5rem auto;
+        }
+
+        .tab-head {
+            border: 1px solid #f2f2f2;
+            background-color: #f2f2f2;
+            overflow: hidden;
+        }
+        .tab-head li {
+            width: 25%;
+            line-height: 4rem;
+            text-align: center;
+            font-size: 16px;
+            cursor: pointer;
+        } 
+
+        .checked {
+            background-color: #fff;
+            border-top: 2px solid #008cf0;
+            color: #008cf0;
+        }
+
+        .head-hover {
+            background-color: #e3e3e3;
+        }
+        .content {
+            /* width: 660px; */
+            box-sizing: border-box;
+            padding: 0 15px;
+        }
+        .tab-box .content>.active {
+            display: block;
+        }
+
+        .tab-box .content>li {
+            display: none;
+        }
+        .content .single:nth-child(2n) {
+            margin-right: 0;
+        }
+
+        .single {
+            float: left;
+            margin: 10px 0;
+            margin-right: 20px;
+        }
+
+        .single-left {
+            width: 6rem;
+            height: 9rem;
+            display: inline-block;
+            border-right: 1px solid #e3e3e3;
+        }
+        .single-left img {
+            width: 5rem;
+            height: 5rem;
+            border-radius: 50%;
+            padding: 8px;
+        }
+        .single-right {
+            position: relative;
+            display: inline-block;
+            width: 18rem;
+            padding-left: 10px;
+        }
+
+        .single-right-content {
+            position: absolute;
+            width: 100%;
+            height: 9rem;
+            top: 50%;
+            margin-top: -5rem;
+        }
+        .single-title a{
+            text-decoration: none;
+            color: #333;
+            font-size: 16px;
+        }
+        .single-right span {
+            line-height: 18px;
+            color: #999;
+            font-size: 14px;
+            
+        }
+
+        span.txh-description {
+            display: block;
+            margin: 6px 0 4px 0;
+            font-size: 13px;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            overflow: hidden;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+        }
+    </style>
+</head>
+<body>
+    <div class="tab-box">
+        <div class="tab-wrap">
+            <ul class="tab-head">
+                <li class="checked">政务</li>
+                <li>专家</li>
+                <li>媒体</li>
+                <li>自媒体</li>
+            </ul> 
+        </div>
+        <ul class="content">
+            <!-- 政务 -->
+            <li class="active">
+                <ul class="all-list">
+                    <li class="single">
+                        <div class="single-left">
+                            <img src="http://passport-10002987.image.myqcloud.com/1014717-586c66d975930">
+                        </div>
+                        <div class="single-right">
+                            <div class="single-right-content">
+                                <div class="single-title">
+                                    <a href="#">全国水产技术推广总站</a>
+                                </div>
+                                <span class="txh-description">于1990年经中央机构编制委员会批准成立，为农业部直属正局级单位为农业部直属正局级单位为农业部直属正局级单位为农业部直属正局级单位</span>
+                                <span>文章数：43</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="single">
+                        <div class="single-left">
+                            <img src="http://passport-10002987.image.myqcloud.com/1014658-586df0c0723c1">
+                        </div>
+                        <div class="single-right">
+                            <div class="single-right-content">
+                                <div class="single-title">
+                                    <a href="#">中国渔业协会</a>
+                                </div>
+                                <span class="txh-description">国家农业部是主管农业与农村经济发展的国务院组成部门</span>
+                                <span>文章数：120</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="single">
+                            <div class="single-left">
+                                <img src="http://passport-10002987.image.myqcloud.com/1014718-586df26f00404">
+                            </div>
+                            <div class="single-right">
+                                <div class="single-right-content">
+                                    <div class="single-title">
+                                        <a href="#">中国渔业政务网</a>
+                                    </div>
+                                    <span class="txh-description">国家农业部是主管农业与农村经济发展的国务院组成部门</span>
+                                    <span>文章数：120</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="single">
+                                <div class="single-left">
+                                    <img src="http://passport-10002987.image.myqcloud.com/1014719-586df3c47d712">
+                                </div>
+                                <div class="single-right">
+                                    <div class="single-right-content">
+                                        <div class="single-title">
+                                            <a href="#">国家农业部</a>
+                                        </div>
+                                        <span class="txh-description">国家农业部是主管农业与农村经济发展的国务院组成部门</span>
+                                        <span>文章数：120</span>
+                                    </div>
+                                </div>
+                            </li>
+                </ul>
+            </li>
+            <!-- 专家 -->
+            <li>
+                <ul class="all-list">
+                    <li class="single">
+                        <div class="single-left">
+                            <img src="http://passport-10002987.image.myqcloud.com/203715-59ce0e9eca21a">
+                        </div>
+                        <div class="single-right">
+                            <div class="single-right-content">
+                                <div class="single-title">
+                                    <a href="#">陈效儒</a>
+                                </div>
+                                <span class="txh-description">通威股份特种水产研究所所长，研发参与“虾干强”，致力用先进技术真正</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="single">
+                        <div class="single-left">
+                            <img src="http://passport-10002987.image.myqcloud.com/212946-59cdaa60e97d7">
+                        </div>
+                        <div class="single-right">
+                            <div class="single-right-content">
+                                <div class="single-title">
+                                    <a href="#">梁勤朗</a>
+                                </div>
+                                <span class="txh-description">通威设施渔业工程研究所所长，水产科技公司总经理，专注生态环保养殖经理，专注生态环保养殖</span>
+                                <span>文章数：120</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="single">
+                        <div class="single-left">
+                            <img src="http://passport-10002987.image.myqcloud.com/118618-59c4c377800fb">
+                        </div>
+                        <div class="single-right">
+                            <div class="single-right-content">
+                                <div class="single-title">
+                                    <a href="#">渔翁吴老</a>
+                                </div>
+                                <span class="txh-description">吴宗文，通威股份首席水产专家、国务院特殊津贴专家。</span>
+                                <span>文章数：120</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="single">
+                        <div class="single-left">
+                            <img src="http://passport-10002987.image.myqcloud.com/203638-59cc5e3eefee5">
+                        </div>
+                        <div class="single-right">
+                            <div class="single-right-content">
+                                <div class="single-title">
+                                    <a href="#">养殖高手启示录</a>
+                                </div>追踪养殖高手， 洞察养殖经验， 分享养殖黑科技！国家农业部是主管农业与农村经济发展的国务院组成部门</span>
+                                <span>文章数：120</span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+            <!-- 媒体 -->
+            <li>
+                <ul class="all-list">
+                    <li class="single">
+                        <div class="single-left">
+                            <img src="http://passport-10002987.image.myqcloud.com/203715-59ce0e9eca21a">
+                        </div>
+                        <div class="single-right">
+                            <div class="single-right-content">
+                                <div class="single-title">
+                                    <a href="#">陈效儒</a>
+                                </div>
+                                <span class="txh-description">通威股份特种水产研究所所长，研发参与“虾干强”，致力用先进技术真正</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="single">
+                        <div class="single-left">
+                            <img src="http://passport-10002987.image.myqcloud.com/212946-59cdaa60e97d7">
+                        </div>
+                        <div class="single-right">
+                            <div class="single-right-content">
+                                <div class="single-title">
+                                    <a href="#">梁勤朗</a>
+                                </div>
+                                <span class="txh-description">通威设施渔业工程研究所所长，水产科技公司总经理，专注生态环保养殖经理，专注生态环保养殖</span>
+                                <span>文章数：120</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="single">
+                        <div class="single-left">
+                            <img src="http://passport-10002987.image.myqcloud.com/1014717-586c66d975930">
+                        </div>
+                        <div class="single-right">
+                            <div class="single-right-content">
+                                <div class="single-title">
+                                    <a href="#">全国水产技术推广总站</a>
+                                </div>
+                                <span class="txh-description">于1990年经中央机构编制委员会批准成立，为农业部直属正局级单位为农业部直属正局级单位为农业部直属正局级单位为农业部直属正局级单位</span>
+                                <span>文章数：43</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="single">
+                        <div class="single-left">
+                            <img src="http://passport-10002987.image.myqcloud.com/1014658-586df0c0723c1">
+                        </div>
+                        <div class="single-right">
+                            <div class="single-right-content">
+                                <div class="single-title">
+                                    <a href="#">中国渔业协会</a>
+                                </div>
+                                <span class="txh-description">国家农业部是主管农业与农村经济发展的国务院组成部门</span>
+                                <span>文章数：120</span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+            <!-- 自媒体 -->
+            <li>
+                <ul class="all-list">
+                    
+                    <li class="single">
+                        <div class="single-left">
+                            <img src="http://passport-10002987.image.myqcloud.com/1014718-586df26f00404">
+                        </div>
+                        <div class="single-right">
+                            <div class="single-right-content">
+                                <div class="single-title">
+                                    <a href="#">中国渔业政务网</a>
+                                </div>
+                                <span class="txh-description">国家农业部是主管农业与农村经济发展的国务院组成部门</span>
+                                <span>文章数：120</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="single">
+                            <div class="single-left">
+                                <img src="http://passport-10002987.image.myqcloud.com/1014719-586df3c47d712">
+                            </div>
+                            <div class="single-right">
+                                <div class="single-right-content">
+                                    <div class="single-title">
+                                        <a href="#">国家农业部</a>
+                                    </div>
+                                    <span class="txh-description">国家农业部是主管农业与农村经济发展的国务院组成部门</span>
+                                    <span>文章数：120</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="single">
+                            <div class="single-left">
+                                <img src="http://passport-10002987.image.myqcloud.com/118618-59c4c377800fb">
+                            </div>
+                            <div class="single-right">
+                                <div class="single-right-content">
+                                    <div class="single-title">
+                                        <a href="#">渔翁吴老</a>
+                                    </div>
+                                    <span class="txh-description">吴宗文，通威股份首席水产专家、国务院特殊津贴专家。</span>
+                                    <span>文章数：120</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="single">
+                            <div class="single-left">
+                                <img src="http://passport-10002987.image.myqcloud.com/203638-59cc5e3eefee5">
+                            </div>
+                            <div class="single-right">
+                                <div class="single-right-content">
+                                    <div class="single-title">
+                                        <a href="#">养殖高手启示录</a>
+                                    </div>追踪养殖高手， 洞察养殖经验， 分享养殖黑科技！国家农业部是主管农业与农村经济发展的国务院组成部门</span>
+                                    <span>文章数：120</span>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+        </ul>
+    </div>
+</body>
+<script src="js/jquery-1.11.3.min.js"></script>
+<script>
+    $('.tab-box .tab-head').on('click',$('.tab-head li:not(.checked)'),function(e){
+        console.log($(e.target))
+        var index = $(e.target).index()
+        $(e.target).addClass('checked').siblings().removeClass('checked')
+        $('.tab-box .content>li').eq(index).addClass('active').siblings().removeClass('active')
+    })
+
+</script>
+</html>

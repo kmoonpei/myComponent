@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>通心号-ajax</title>
+</head>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+   
+    /* .box {
+        width: 414px;
+        height: 736px;
+        border: 1px solid #ccc;
+    } */
+
+   
+
+    .listitem {
+        background-color: #fff;
+        margin-top: 5px;
+        list-style: none;
+    }
+    .listitem li {
+        padding: 5px 2%;
+        border-bottom: 1px solid #ddd;
+        font-size: 0;
+    }
+   
+    .listitem img {
+        width: 28%;
+        height: 67px;
+        border-radius: 3px;
+        vertical-align: middle;
+        margin: 5px 5px 5px 0;
+    }
+    .text {
+        width: 70%;
+        display: inline-block;
+        padding-left: 5px;
+        margin: 5px 0;
+        padding-right: 2%;
+        vertical-align: middle;
+    }
+    .text p {
+        font-size: 15px;
+        color: #1c1c1c;
+        line-height: 22px;
+        margin-bottom: 5px;
+    }
+    .text a,.text span {
+        font-size: 12px;
+        float: left;
+        color: #888;
+        text-decoration: none;
+    }
+    .text span {
+        margin-left: 5px;
+    }
+    .text div {
+        float: right;
+        font-size: 12px;
+        color: #aaa;
+    }
+</style>
+<body>
+    <ul class="listitem">
+        <!-- 示例 -->
+        <li>
+            <img src="http://passport-10002987.image.myqcloud.com/1014717-586c66d975930">
+            <div class="text">
+                <p>节后台风又要来？还有一波冷空气！</p>
+                <a href="#">天气预报</a>
+                <span>5小时前</span>
+                <div>22阅读</div>
+            </div>
+        </li>
+    </ul>
+</body>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+<script>
+    $.ajax({
+        url: 'http://api.tongwei.cn/ApiNews/getArticleByPage',
+        data: {page:1},
+        success: function(result){
+            console.log(result.data);
+            var data = result.data;
+            var str = '<ul class="listitem">';
+            for(var i = 0;i<data.length;i++){
+                var pic = data[i].pic + '';
+                str += '<li>' +
+                            '<img src='+ pic + '>' +
+                            '<div class="text">'+
+                                '<p>' + data[i].title + '</p>' +
+                                '<a>' + data[i].catname + '</a>' +
+                                '<span>' + data[i].addtime + '</span>' +
+                                '<div>' + data[i].viewnum + '阅读</div>'+
+                            '</div>'
+                        '</li>'
+            }
+            str += '</ul>'
+            $('body').html(str)
+        }
+    })
+</script>
+</html>
