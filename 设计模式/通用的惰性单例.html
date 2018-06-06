@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>通用的惰性单例</title>
+</head>
+
+<body>
+    <button id='btn_create'>新建节点</button>
+    <button id='btn_click'>点击</button>
+
+</body>
+<script>
+    var getSingle = function (fn) {
+        var result;
+        return function () {
+            return result || (result = fn.apply(this.arguments));//result 变量因为身在闭包中，它永远不会被销毁
+        }
+    }
+    var createDiv = function () {
+        var div = document.createElement('div');
+        div.innerHTML = '我是新建的节点';
+        div.style.display = 'none';
+        document.body.appendChild(div);
+        console.log(div)
+        return div;
+    }
+    var createSingleDiv = getSingle(createDiv);
+    document.getElementById('btn_create').onclick = function () {
+        var creatediv = createSingleDiv();
+        creatediv.style.display = 'block';
+    }
+
+
+    var bindEvent = getSingle(function () {
+        console.log('绑定事件')
+        document.getElementById('btn_click').onclick = function () {
+            alert('click');
+        }
+        return true;
+    })
+
+    var render = function () {
+        console.log('开始渲染');
+        bindEvent();
+    }
+    render();
+    render();
+    render();
+</script>
+
+</html>
