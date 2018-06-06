@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>javascript对象的多态</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    //es5
+    var MakeSound = function (animal) {
+        animal.sound();
+    };
+    var Duck = function () { };
+    Duck.prototype.sound = function () {
+        console.log('嘎嘎');
+    }
+    var Chicken = function () { };
+    Chicken.prototype.sound = function () {
+        console.log('咯咯');
+    }
+    MakeSound(new Duck())//嘎嘎
+    MakeSound(new Chicken())//咯咯
+
+    //es6
+    let MakeSound1 = (animal) => {
+        animal.sound();
+    }
+    class Duck1 {
+        sound() {
+            console.log('嘎嘎1');
+        }
+    }
+    class Chicken1 {
+        sound() {
+            console.log('咯咯1')
+        }
+    }
+    MakeSound1(new Duck1())//嘎嘎1
+    MakeSound1(new Chicken1())//咯咯1
+
+</script>
+
+</html>
