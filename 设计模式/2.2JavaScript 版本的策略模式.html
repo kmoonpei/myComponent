@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JavaScript版的策略模式</title>
+</head>
+
+<body>
+    <h6>例如，绩效为 S 的人年终奖有 4 倍工资，绩效为 A 的人年终奖有 3 倍工资，而绩效为 B 的人年终奖是 2 倍工资。</h6>
+</body>
+<script>
+    var Strategy = {
+        'S': function (salary) {
+            return salary * 4;
+        },
+        'A': function (salary) {
+            return salary * 3;
+        },
+        'B': function (salary) {
+            return salary * 2;
+        },
+    }
+    var calculateBonus = function(level,salary){
+        return Strategy[level](salary)
+    }
+    console.log(calculateBonus('A',3000));
+    console.log(calculateBonus('S',3000));
+    
+</script>
+
+</html>
