@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>封装数据</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    var myObject = (function () {
+        var __name = 'steven';
+        return {
+            getName: function () {
+                return __name
+            }
+        }
+    })();
+    console.log(myObject.getName())//steven
+    console.log(myObject.__name)//undefined
+    // 在 ECAMScript 6 中，还可以通过 Symbol 创建私有属性
+</script>
+
+</html>
