@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>代理模式预加载图片</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    var myImage = (function () {
+        var imgNode = document.createElement('img');
+        document.body.appendChild(imgNode);
+        return {
+            setSrc: function (src) {
+                imgNode.src = src;
+            }
+        }
+    })();
+
+    var proxyImage = (function () {
+        var img = new Image;
+        img.onload = function () {
+            myImage.setSrc(this.src);
+        }
+        return {
+            setSrc: function (src) {
+                myImage.setSrc('file:// /C:/Users/svenzeng/Desktop/loading.gif');
+                img.src = src;
+            }
+        }
+    })();
+    proxyImage.setSrc('http:// imgcache.qq.com/music/photo/k/000GGDys0yA0Nk.jpg');
+</script>
+
+</html>
