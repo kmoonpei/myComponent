@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>深度拷贝</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" /> -->
+    <script>
+        var obj = { a: '1', b: ['b1', 'b2', 'b3'], c: '3' };
+        var c = [1, 2, 4, { a: 'aa', b: [{ a: 1, name: 'lee', favor: ['book', 'pingpong'] }] }]
+
+        function deepClone(obj) {
+            let newObj = Array.isArray(obj) ? [] : {};
+            for (key in obj) {
+                if (obj && typeof obj === 'object') {
+                    if (obj.hasOwnProperty(key)) {
+                        if (obj[key] && typeof obj[key] === 'object') {
+                            newObj[key] = deepClone(obj[key]);
+                        } else {
+                            newObj[key] = obj[key];
+                        }
+                    }
+                }
+            }
+            return newObj;
+        }
+
+        function deepClone1(obj) {
+            return JSON.parse(JSON.stringify(obj))
+        }
+        console.log(deepClone(obj));
+        console.log(deepClone(c))
+        console.log(deepClone(123))
+        console.log(deepClone1(obj))
+        
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
